@@ -1,0 +1,51 @@
+Thread - Unit of scheduling, concurrent
+
+Application through put - Tomcat server spring boot capable of handling 200 request. Meaning if a thread
+takes 1sec to execute, it can execute 200 threads in 1sec (process 200 req).
+
+Increasing app through put then increasing thread should be considered.
+
+There are OS threads, expensive. Virtual threads are not OS threads not expensive.
+
+Deep Dive into virtual threads :-
+
+Process - A instance of computer program, it includes code, resources (OS like memory, socket etc)..
+heavy weight
+(expensive to create, destruct)
+
+Thread - Part of process
+    A process can container one or more threads
+    Threads within process can share the memory space
+
+Process unit of resources. Thread is unit of execution.
+
+Modern processor come with multiple core, each is a CPU processor.
+
+Scheduler - Assigns a thread to CPU, Assigns how much time to execute.
+
+When there are multiple process, each process has multiple threads, each threads waiting for scheduler
+to assigned with CPU, this scheduler makes context switching between threads and processor.
+
+When switching thread, the thread which is already executing has to wait and store its state
+
+These threads are called OS threads or Kernel threads
+
+Java thread was introduced -> 25 years ago
+Java thread = OS thread - OS thread is unit of scheduling, wrapper around OS thread.
+When thread execute and scheduler switches context we need the state of thread to be stored i.e stack memory
+Heap vs Stack - Heap memory is something stores List, ArrayList etc
+Stack Memory has its own stack memory
+It is allocating memory before 1mb
+
+What is the problem?
+    If there is a multiple calls to other services - Then a thread waits for I/O thread.
+
+Virtual threads are not OS thread
+Java thread (Platform thread)
+IO using Thread.sleep, to simulate slow calls we should we Thread.sleep
+Creating millions of thread not possible
+OS doesn't allow to execute
+
+Daemon Thread - Background thread, Application doesn't wait,  Cound down latch to wait when background
+threads are down.
+

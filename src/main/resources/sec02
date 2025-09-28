@@ -1,0 +1,26 @@
+Platform Thread..
+
+My Machine is 12 cores - If you have 12 task to do, then each CPU processor will pickup the thread.
+Scheduler assigns the thread to each CPU.
+
+Let say we have 24 task -> The scheduler assigns 2 threads per CPU and it doesn't wait for the thread
+to complete. That's why You will see each thread process time has increased.
+
+Virtual Thread..
+
+My Machine is 12 cores - If you have 12 task to do, then each CPU processor will pickup the Virtual
+Thread task.
+Scheduler assigns the thread task to each CPU and it is executed by 12 Carrier thread.
+
+Let say we have 24 task -> 24 Virtual threads will be created in the heap.
+Then 12 carrier threads pickup the Virtual threads task and start to execute. It complete the task and
+then proceed
+with another Virtual thread task.
+
+
+Conclusion : If your application is only CPU intensive process, then Virtual thread migration doesn't
+impact anything.
+The time taken is same.
+
+If there is lot of IO, network involved then Virtual thread makes difference.
+

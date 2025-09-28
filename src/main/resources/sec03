@@ -1,0 +1,49 @@
+Virtual thread scheduler
+
+Platform threads are scheduled by the OS scheduler
+
+Virtual Threads are scheduled by JVM
+    Dedicated ForkJoinPool to schedule Virtual Threads
+
+Then Carrier Thread pickup this thread.
+
+Virtual Thread Scheduler Config
+    Dedicated ForkJoinPool to schedule Virtual threads
+        core pool size = available processor
+        Carrier threads will not be blocking during I/O
+
+
+Scheduling Types
+    Preemptive
+    Cooperative
+
+Preemptive - OS Scheduler uses this
+    CPU is allocated for a limited period of time
+    OS can forcibly pause a running thread to give CPU to another thread
+    Based on thread-priority, time-slice, availability of thread-to-run threads etc.
+    Platform threads can have priorities (Thread.setPriority(6))
+        1 is low priority
+        10 is high
+        5 is default
+    Note
+        Preemptive scheduling behaviour is platform dependent
+        Virtual threads have default priority. Can not be modified.
+
+Cooperative
+    CPU is allocated till the execution is completed
+        or Thread should be willing to give CPU to another thread (Thread.yield())
+    Execution is not interrupted
+    If there is a long running thread/task, other threads might have to starve.
+
+CPU intensive task - We should prefer Platform threads. Why? because If you use Virtual thread,
+The processor gets blocked until it is completed.
+
+Virtual Threads are good for I/O.
+
+
+
+
+
+
+
+

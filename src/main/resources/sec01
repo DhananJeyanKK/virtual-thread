@@ -1,0 +1,65 @@
+Virtual Thread
+    public Thread (Platform thread)
+        abstract BaseVirtualThread
+           (package private) VirtualThread
+
+Thread is a public class but VirtualThread is package private - We can't create VirtualThread
+
+Thread.Builder
+    Thread.ofPlatform()
+    Thread.ofVirtual()
+
+VirtualThreads are daemon thread by default. We can't create non-daemon virtual threads.
+
+We can't create 50K platform threads but I was able to create 50k Virtual threads.
+It was able to create 200K virtual threads. It was even possible to create 1000K.
+
+How Virtual thread works?
+    It's an illusion provided by Java.
+    OS can't see them/Schedule them.
+    It looks like a thread, accept runnable. We can thread.start(), thread.join()
+
+
+    Virtual Threads are not platform threads - Virtual threads are tiny objects. These are task.
+    All these Virtual threads are added to queue.
+    All this virtual threads are executed by Platform thread from the queue.
+    When the Virtual threads are getting executed by Platform thread, If the platform thread
+    sees that it is calling a network or thread.sleep - it parks the Virtual thread and start with other
+    Virtual thread task.
+
+    A Virtual Thread has to be mounted to the Platform thread or Carrier thread to execute the task.
+    When it Parks, the Virtual Thread will be unmounted and goes to Parking.
+
+    When a network call is done for the Parked one - It will unpark the thread and executes again.
+
+    The Platform thread which is executing Virtual threads are called Carrier Thread.
+
+    Big Box
+        Memo......ry  Parking....
+            Virtual Threads fork-join pool. (not a common pool)
+
+        java..
+        code..   cpu
+
+How about Stack memory?
+
+Platform threads have fixed stack (1mb, 2mb)
+Virtual threads do Not have fixed stack. They have resizable stack.
+    Stack Chunk Object.
+
+Each Virtual thread has its Stack chunk object - Its part of heap.
+
+        Heap Memory..........
+
+        VT1 VT2 VT3...            VT5              VT6
+                                  Stack Object5    Stack Object 6
+
+
+             VT7       Platform thread  [Stack Memory of Platform thread]
+                       ..               [Stacks VT7 stacks and then when it parks attach it to Heap].
+                       ..
+                       ...
+                       Executes VT7
+
+
+
