@@ -1,0 +1,12 @@
+ThreadFactory :-
+
+Thread.Builder - it is not thread safe
+
+main - thread.builder
+    t1,t2,t3
+
+main - thread.builder - factory (factory is thread safe)
+    t1
+        t11,t12
+    t2
+        t21,t22

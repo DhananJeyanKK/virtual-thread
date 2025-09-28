@@ -1,0 +1,33 @@
+Challenge with OS platform threads
+One platform thread = One OS thread
+Expensive to create
+Limited number of platform threads
+Platform threads often sit idle during I/O operations, resulting in underutilization
+
+Virtual Thread
+It extends Thread class allowing us to use thread-related methods as usual
+Lightweight and occupy minimal space in the heap. We can create millions of them.
+Very cheap to create
+It does not not replace platform threads
+Great for IO task. We get non-blocking benefits behind scenes.
+There no advantage for compute only task.
+
+Carrier Threads
+    A dedicated ForkJoinPool based on the available number of processors
+    Carrier thread is platform thread.
+
+Virtual Thread
+    Can NOT be executed directly by OS scheduler
+    It is mounted on Carrier thread for the exection
+        In-memory computation will keep running until it complete
+        During any blocking IO calls, it will be unmoounted from the carrier thread
+        Virtual thread execution context is part of Heap
+        All the race condition/dead locks etc are still applicable
+        It is pinned on a carrier thread when we have synchronized block or JNI
+            It is OK for in-memory computations
+            NOT good for IO tasks
+            Use reentrantLock if required instead of synchronized
+        Thread builder is not thread safe. Use threadfactory if required
+        join/interrupt/getState methods will work as usual.
+
+

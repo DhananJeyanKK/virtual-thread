@@ -1,0 +1,29 @@
+Need for Synchronization
+
+Mechanism to provide controlled access to shared resources/critical section of code in multi-thread env.
+
+To prevent race condition/data corruption.
+
+Note :
+    All the multi thread related challenges like race conditions, dead-locks etc are still applicable for
+Virtual threads.
+
+Java 21 - When you have Synchronized method or block,
+
+Synchronized is not Bart
+Synchronized + Virtual Thread -> Pinned. Carrier thread can't unmount or unpark the Virtual thread.
+    I/O task can't be unmounted. Would affect scaling.
+
+Java 24 -> synchronized block + io+ Virtual thrad -> fixed
+
+
+Reentrant Lock
+
+synchronized + flexibility
+fairness policy
+    a thread which has been waiting longer will get the chance to acquire the lock
+tryLock with timeout
+    max time for a thread to wait to acquire the lock
+
+
+

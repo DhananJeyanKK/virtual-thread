@@ -40,7 +40,7 @@ The processor gets blocked until it is completed.
 
 Virtual Threads are good for I/O.
 
-
+Thread.yield - It's yielding an option to another thread for cooperative scheduling.
 
 
 
