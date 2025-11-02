@@ -2,10 +2,8 @@ package org.thread.sec05;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.thread.sec04.ReentrantLock;
 
 import java.time.Duration;
-import java.util.Date;
 import java.util.concurrent.ThreadFactory;
 
 public class ThreadFactory1 {

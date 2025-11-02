@@ -1,0 +1,27 @@
+Future :
+
+Future method is place holder for service calls.
+
+You get values from Future.get() - Waiting for callable to complete and getting the response.
+
+future.get(2, TimeUnit.SECONDS) -> Timeout after 2 sec
+
+future.cancel(true) -> It interrupt the thread.
+
+
+Aggregator
+
+Aggregates the response of future.
+
+In getProductDTO () - It has two Submit calls meaning it creates two threads and then we have future method. It means it blocks further execution.
+
+
+// var rating = Client.getRating(id); You could have done that but It is better to void because some people
+//return new ProductDTO(id, product.get(), Client.getRating(id)); //If they do this then Rating call will happen only after product service call\
+
+
+ExecutorService
+
+Platform threads -> Singe/fixed/cache/scheduled/fork-join-pool (CPU intensive task)
+Virtual Threads -> Thread per task executor, non-bloclking benefits behind the scene
+

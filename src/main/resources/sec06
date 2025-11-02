@@ -1,0 +1,64 @@
+ExecutorService - Java 5
+
+High level concurrency framework
+    Thread Management
+    Task Handling
+
+Provides simple interface for Developers to use this without writing much about Thread by ourself.
+
+ExecutorService - does thread pooling. It tries to reuse the threads created.
+
+Task -> SubTask
+    Virtual Thread is cheap
+    A task can be divided into multiple smaller subtasks
+
+Executor - Is a functional interface.
+ExecutorService - Is an interface which extends Executor
+Executors - Is an utility class with factory methods to create an instance of executorServiceImpl
+
+Virtual Threads
+        Tasks
+        Virtual Thread is intended to be created on demand and discard once the task is done.
+    Then what is the user of executorServie with Virtual Threads?
+        Thread per task creation management.
+
+Executor Service
+    Type                Description
+    Fixed Thread Pool           A thread pool with dedicated number of threads. A web app with 200 threads
+    Single Thread executor      Same as above. A thread pool with single worker thread.
+                                to execute tasks sequentially.
+    Cached Thread pool          Elastic thread pool. Create new thread on demand. Reuse existing thread if
+                                available. Idle thread life time is 1 min.
+                                Use when unpredictable work load
+    Scheduled Thread pool       Thread pool which can be used to run tasks at regular interval.
+                                Yse when call a remote service every minute.
+    Thread per task executor    Creates new thread per task on demand (Java 21)
+
+
+Except last one -> Others use queue mechanism when you submit executor service.
+The last one -> whenever there is a task, Virtual thread created and executed by carrier thread.
+
+
+Executor Servies - When you start, It keeps running.
+You have to shut Down - After shut down, you can't execute Task. It will wait for existing task to complete.
+What is Shut Down now - It exit immediate without waiting.
+
+If you use try with resources - It will add shut down automatically.
+for web application - We dont have use this as it is open through out the application.
+
+
+Single Thread Executor (Platform thread) -> Tasks will be planned one by one by single thread. Could be helpful for machine critical task.
+
+Fixed Thread Pool(Platform thread) -> Thread Pool is 5, 5 will be starting at one time then it willl be taking another thread when ending.
+
+Cached thread Pool (Platform thread) -> Depends on Task it creates the Thread.
+
+New Virtual Thread Executor (Creates Virtual thread) -> Creates virtual thread based on the task.
+
+Scheduled Thread pool (Platform thread) -> Making a scheduler call.
+
+
+
+
+
+

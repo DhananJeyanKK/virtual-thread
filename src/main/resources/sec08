@@ -1,0 +1,46 @@
+Limitations :
+
+
+Concurrency Limit :
+
+Virtual Threads are not supposed to be pooled.
+
+Fixed Thread Pools are like - Creates 10 threads and same threads reuse.
+
+
+Semaphore : Synchronized or Reentrant lock.
+
+Use Semaphore for limiting the thread.
+
+You can configure to allow number of thread permits.
+
+Semaphore  semaphore = new Semaphore(3)
+semaphore.acquire() // locking
+code.execute();
+semaphore.release();
+
+
+Semaphore(1) is equal to ReentrantLock() ?
+
+Lock -> The Thread which acquired the lock is supposed to unlock
+
+Semaphore -> Any thread can release the permit.
+
+Sometimes one thread gets all permits in order to execute its own thread not to interferre with other threads.
+
+Virtual Thread Concurrency Limiter :-
+You can achive only by Semaphore.
+
+The order is not maintained here.. randomly calls the services.
+This is solved using Java Queue - Put it in queue and poll it when needed.
+
+Gatherers :
+
+It's not available for primitive streams.
+
+Using MapConcurrent - We don't have to use semaphore - It can easily be used.
+
+
+
+
+
