@@ -1,0 +1,39 @@
+Thread Local
+
+It's kind of locker or storage space for each thread.
+
+Each thread can store & access its value independent of other threads.
+
+It works with both Platform & Virtual threads.
+
+Scoped Values - Same idea / safe and structured format.
+
+
+Thread local - Cons
+ - Mutable - Anywhere can we set - It's dangerous.
+ - Object in Thread Local can live forever even if it no used - REMOVE method must be called. Else same thead usage will
+ have same values
+ - Child Thread inhertiance is expensive
+
+ Should be used with static final - but people misuse
+
+Thread local -> We can set & MUST REMOVE it otherwise when same thread is used the data will be there.
+
+When your main thread starts running -> If you create virtual thread -> Then thread local will be null ->
+        That's why use InhertiableThreadLocal - then it copies the values to child.
+        - Child thread automatically inherits the value from Parent
+        - Make sure you hav immutable Storage - in our case String - If you change the value in your child then only copies get changed.
+
+
+Is ThreadLocal bad?
+
+- No - disciple.
+
+Golden Rules -
+- Do not expose the threadlocal directly
+- Keep mutation methods proviate
+- set and remove mustl always go together
+- ThreadLocal only for cross-cutting conerns/non-functional data
+
+
+

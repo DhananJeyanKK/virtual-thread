@@ -1,0 +1,59 @@
+CompletableFuture :
+
+Intro in java 8
+
+Asynch programming in declarative style
+
+Nice way to handle errors.
+
+We have Future<V>, its an interface
+
+CompletableFuture is a class which implements Future. It has lot of methods to handle error, combine results etc.
+
+We can extend this class to override.
+
+CompletableFuture by default it uses Fork-Join-Pool.
+    It accepts an executor. We can use Virtual thread per task executor.
+
+
+Is CompletableFuture reactive?
+    It's not.
+    It's not same as reactive programming
+
+Completable Future
+
+method-1 ------> method-2
+         result
+         <------
+
+Result is put it in box, Why?
+If method 2, time consuming IO task, Sends Completablefuture object (something like pipe),
+
+
+If you have Completablefuture box returned - You can use it in main method.
+cf.thenAccept - main method doesn't block proceed further
+cf.join - main thread get blocked.
+
+Completablefuture can use factor - it is using Fork-join-pool.
+
+RunAsynch - Pass Virtual thread.
+
+Supply Asynch - Supply value asynchronously.
+
+
+
+Summary :
+
+A tool/class which implements future interface lot of methods process/combine result in functional style
+It uses fork-join pool
+We can use virtual thread per task exectuor for IO tasks
+
+Limitation,
+It implements future, but cancel method doesnt interuppt the thread running task.
+
+
+
+
+
+
+
