@@ -1,0 +1,49 @@
+Structured concurrency :-
+
+This is preview feature - 5th preview
+
+JDK 26 - 6th preview..
+
+May be 27??
+
+Just to give high level idea..
+
+What is it?
+
+- A big task with multiple steps, Can be divided to small steps and it can be executed concurrently with virtual thread.
+
+A Programming apprach where a set of related subtasks, runnning in different threads are treated as single unit.
+
+
+Executor Service :
+
+Unstructured concurrency -
+    Utillity for managing a pool of threads and submitting tasks to them.
+    Tasks are independent. No built in relationship
+
+We have to manually manage lifcycle, errors, cancellation
+
+But structured concurrency does it for us
+
+Step 1 : choose a joiner strategy
+    Joiner is an interface that defines how subtasks complete
+        We can also provide custom strategy
+
+
+        Joiner.allSuccessfullOrThrow() // all must succeed.
+        Joiner.anySuccessfulResultOrthrow() // at least one is success
+        Joiner.awaitAll() //sucess failer wait for all
+
+
+
+Step 2 : Fork Subtasks/Submit work
+
+User StructuredTaskScope instance using open method. Provide Joiner.
+
+scope.join() - depends on joiner strategy..
+
+
+
+Scoped Valie Propagation :
+There is no inheritable scoped value.. If there is two child threads?
+

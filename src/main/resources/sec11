@@ -1,0 +1,55 @@
+Scoped Values :
+
+Scoped values are preferred over ThreadLocal - As we are using more and more virtual threads.
+
+Safe, Predictable and efficient way to attach execution - scoped data without relying on dev discipline
+    ThreadLocal still works but lifecycle management is manual
+
+
+GenerateKey
+ - ScopedValue.newInstance
+
+ Values are bound to current thread just before runnable starts
+ Values are unbound automatically when runnable completes
+ This ensures no leaks, no accidental reuse and no mutation of stored data
+
+ This works with both Platform & Virtual thread.
+
+Rebinding :-
+
+Scoped Values can be rebound with a new value in a nested scope
+    Outer value is temporarily replaced for a duration of inner scope
+    After the scope ends the original value is restored.
+
+
+Carrier Object created -- The more KEYS - then it goes more while loop.
+
+    KEY1 -> value -> null
+    KEY2 -> value2 -> KEY1
+    KEY3 -> value3 -> KEY2
+
+    If you access KEY1.get
+    then it goes from bottom to top...
+
+
+
+Thread Local vs Scoped Value
+
+Scope               Thread Scoped                                       execution scoped
+LifeCycle           Until thread dies/value is removed                  Automatically removed when task ends
+Mutability          Mutable                                             Immutable
+Child Thread
+inhertance          Possible but expensive                              Only possible via structured concurrency
+
+
+
+
+
+
+
+
+
+
+
+
+
