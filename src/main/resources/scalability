@@ -1,0 +1,53 @@
+Scalability :
+
+How application behaves with larger number of requests/Concurrent workloads.
+
+CPU 4 threads can handle.
+
+1. first 4 request proessed by CPU - response time 1s
+2. 5th request waiting because of CPU busy - response time 2s
+3. 9th request waiting because 5th to 8 busy with CPU - response time 3s
+
+How to process then 1000 requests?
+
+How can I process 1000 requests concurrently in a server application?
+
+    Increase the number of threads? (Platform) - 1000
+        Needs memory allocation, context switch
+    If we assume we have lots of I/O calls, CPU might not be utilized. But increasing threads will consume mem.
+        cpu 10%
+        memory 1GB
+
+
+Factor that could affect scalaibility of app
+    Resources (CPU, memeory, network, disc etc)
+    Application design/arch (Data structure, DB query etc)
+
+
+How to measure or what is metric that our app is scaling or not.
+    Throughput
+    Response time
+
+
+Throughput - Number of request a server can process per unit time (N req/sec, N req/min).
+Response time - Time taken to process request.
+
+Response time and throughput has inverse relationship.
+
+Throughput - Y axis
+Response time - X axis
+
+            -
+            -
+            -
+            -
+            -
+            -               4   4
+            -           3
+            -       2           2s
+            -   1s  1s  1s  1s
+            -   -   -   -   -   -   -   -   -   -   -   -   -
+
+
+Upto 4 request - response time remians 1s
+When increasing 5th request - through put is same 4 can be processed at a time - response time goes to 2s
