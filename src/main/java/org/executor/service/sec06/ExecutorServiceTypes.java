@@ -17,8 +17,8 @@ public class ExecutorServiceTypes {
        // execute(Executors.newSingleThreadExecutor(),3);
        // execute(Executors.newFixedThreadPool(5),100);
        // execute(Executors.newCachedThreadPool(), 100);
-        //execute(Executors.newVirtualThreadPerTaskExecutor(), 200);
-        schedule();
+        execute(Executors.newVirtualThreadPerTaskExecutor(), 200);
+       // schedule();
     }
 
     private static void schedule(){

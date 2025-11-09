@@ -38,8 +38,7 @@ Completablefuture can use factor - it is using Fork-join-pool.
 
 RunAsynch - Pass Virtual thread.
 
-Supply Asynch - Supply value asynchronously.
-
+Supply Asynch - Supply value asynchronously
 
 
 Summary :

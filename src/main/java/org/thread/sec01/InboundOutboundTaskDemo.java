@@ -5,7 +5,7 @@ import java.util.concurrent.CountDownLatch;
 public class InboundOutboundTaskDemo {
 
     public static void main(String[] args) throws InterruptedException {
-        virtualThreadDemo();
+        platformThreadDemo2();
     }
 
     private static void platformThreadDemo(){
