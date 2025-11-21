@@ -1,0 +1,9 @@
+run backend service from docker
+ docker run -p 7070:7070 external_service
+
+run application trip-plan
+
+open jmeter from terminal
+jmeter
+jmeter -n -t trip-plan.jmx -l virtual-trip-plan.jtl
+
